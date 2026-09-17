@@ -6,6 +6,27 @@ The project tests one central question:
 
 > Is deep tabletop-style tactical combat compelling when the player can fluidly move between choosing every action and programming a party to fight autonomously?
 
+## Run the Python prototype
+
+Requires Python 3.11+ and Tkinter (usually included with Python; on Debian/Ubuntu install `python3-tk`).
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+dnd-auto-battler --seed 7
+```
+
+The interface uses chat for commands, status, rules feedback, combat narration, and AI explanations. When the game asks a spatial question—where to move or who to attack—select the highlighted answer on the tactical grid.
+
+Chat commands:
+
+- `help`, `status`
+- `manual <unit-id>`, `auto <unit-id>`
+- `move`, `attack`, `end`
+
+Run tests with `pytest`.
+
 ## Product pillars
 
 1. **One authoritative simulation.** Human and AI controllers submit the same structured commands. The rules engine validates all commands.
@@ -29,7 +50,7 @@ A headless rules engine with a minimal tactical interface:
 - seamless control changes at safe decision boundaries;
 - seeded randomness, structured combat log, replay, and AI decision explanations.
 
-The prototype deliberately excludes campaign systems, networking, elaborate graphics, procedural generation, and broad content.
+The current code is an intentionally narrower vertical slice: grid movement/pathing, initiative, melee/ranged attacks, HP/armor, obstacles, hazards, seeded rolls, manual/AI switching, a chat log, and explainable first-match AI. The remaining items above are milestone targets.
 
 ## Living documents
 
